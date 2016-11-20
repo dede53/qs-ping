@@ -1,4 +1,6 @@
 {
 	"name":"ping",
-	"dependencies":{}
+	"dependencies":{
+		"ping": "^0.2.1"
+	}
 }
