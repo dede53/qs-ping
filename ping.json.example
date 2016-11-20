@@ -1,0 +1,10 @@
+{
+	"hosts":[
+		{
+			"ip":"192.168.178.2",
+			"name": "Tablet"
+		}
+	],
+	"interval":1,
+	"minTime": 300
+}
