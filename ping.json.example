@@ -1,10 +1,11 @@
 {
 	"hosts":[
 		{
-			"ip":"192.168.178.2",
-			"name": "Tablet"
+			"ip":"192.168.178.222",
+			"name": "Udo"
 		}
 	],
 	"interval":1,
-	"minTime": 300
+	"minTime": 300,
+	"loglevel":1
 }
