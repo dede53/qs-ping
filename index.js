@@ -1,19 +1,32 @@
 var pingAdapter					= require('ping');
 var adapter 					= require('../../adapter-lib.js');
 
-var ping 						= new adapter({
-	"name": "Ping",
-	"loglevel": 3,
-	"description": "Prüft Netzwerkgeräte auf aktivität.",
-	"settingsFile": "ping.json"
-});
+var ping 						= new adapter("ping");
 
+process.on("message", function(data){
+	if(data.adapter.includes(":")){
+		var splitted = data.adapter.split(":");
+		data.adapter = splitted[0];
+		data.protocol = splitted[1];
+	}else{
+		data.adapter = [data.adapter];
+		data.protocol = false;
+	}
+	switch(data.protocol){
+		case "setSetting":
+			ping.setSetting(data.data);
+			break;
+		case "setLoglevel":
+			break;
+
+	}
+});
 
 var status 			= {};
 
 ping.settings.hosts.forEach(function(host){
 	status[host.ip] = {};
-	status[host.ip].status = false;
+	status[host.ip].status = undefined;
 	status[host.ip].ip = host.ip;
 	status[host.ip].name = host.name;
 	status[host.ip].lastChange = Math.round(new Date().getTime()/1000);
@@ -53,3 +66,4 @@ function checkHosts (){
 }
 
 setInterval(checkHosts, parseInt(ping.settings.interval) * 10000);
+checkHosts();
