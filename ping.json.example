@@ -7,5 +7,6 @@
 	],
 	"interval":1,
 	"minTime": 300,
-	"loglevel":1
+	"loglevel":1,
+	"version":"0.0.1"
 }
