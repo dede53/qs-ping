@@ -3,15 +3,9 @@ var adapter 					= require('../../adapter-lib.js');
 
 var ping 						= new adapter("ping");
 
-process.on("message", function(data){
-	if(data.adapter.includes(":")){
-		var splitted = data.adapter.split(":");
-		data.adapter = splitted[0];
-		data.protocol = splitted[1];
-	}else{
-		data.adapter = [data.adapter];
-		data.protocol = false;
-	}
+process.on("message", function(request){
+	var data = request.data;
+	var status = request.status;
 	switch(data.protocol){
 		case "setSetting":
 			ping.setSetting(data.data);
