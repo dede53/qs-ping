@@ -3,14 +3,13 @@ var adapter 					= require('../../adapter-lib.js');
 
 var ping 						= new adapter("ping");
 
-process.on("message", function(request){
-	var data = request.data;
-	var status = request.status;
+process.on("message", function(data){
 	switch(data.protocol){
 		case "setSetting":
 			ping.setSetting(data.data);
 			break;
-		case "setLoglevel":
+		default:
+			ping.log.error("Nicht definiertes Protocol:" + data.protocol);
 			break;
 
 	}
