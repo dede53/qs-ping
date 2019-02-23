@@ -3,7 +3,7 @@ var adapter 					= require('../../adapter-lib.js');
 
 var ping 						= new adapter("ping");
 
-process.on("message", function(data){
+ping.on("ping", function(data){
 	switch(data.protocol){
 		case "setSetting":
 			ping.setSetting(data.data);
